@@ -1,0 +1,27 @@
+<div class="container ">
+    <div class="row justify-content-center paddingTopUpload">
+        <input type="file" (change)="onFileChange($event)" multiple="false" />
+        <button type="button" (click)="onBtnClicklist()" class="btn btn-primary">Sąrašo įkėlimas</button>
+    </div>
+    <div class="row justify-content-center paddingTopEmail">
+        <div>
+            <table class="table table-responsive table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let receivingEmail of receivingEmailList">
+                        <th>{{receivingEmail.id}}</th>
+                        <td>{{receivingEmail.receivingEmail}}</td>
+                        <td><button type="button" (click)="onBtnClickDeleteList(receivingEmail.id)"
+                                class="btn btn-info">Ištrinti</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

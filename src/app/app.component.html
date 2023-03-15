@@ -1,0 +1,9 @@
+<app-toolbar [inputSideNav]="sideNav" ></app-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sideNav mode="side">
+        <app-navbar></app-navbar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

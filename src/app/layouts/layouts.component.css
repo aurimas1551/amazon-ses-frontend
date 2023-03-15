@@ -1,0 +1,15 @@
+.container {
+    min-height: 100vh;
+}
+
+.paddingTop {
+    padding-top: 80px;
+}
+
+.paddingTopLayout {
+    padding-top: 20px;
+}
+
+borderText {
+    border: 1px solid black;
+  }

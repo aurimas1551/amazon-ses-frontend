@@ -1,0 +1,11 @@
+.container {
+  min-height: 100vh;
+}
+
+.paddingTopUpload {
+  padding-top: 80px;
+}
+
+.paddingTopEmail {
+  padding-top: 25px
+}

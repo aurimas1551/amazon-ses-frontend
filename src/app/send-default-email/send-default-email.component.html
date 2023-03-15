@@ -1,0 +1,14 @@
+<div class="container col-md-5 paddingTop">
+  <form #defaultEmailForm="ngForm" (ngSubmit)="defaultEmailSubmit();defaultEmailForm.reset();">
+    <div class="form-group">
+      <label>Laiško tema</label>
+      <input type="text" [(ngModel)]="defaultEmail.subject" class="form-control" id="subject" name="subject">
+    </div>
+    <div class="form-group">
+      <label>Laiško turinys</label>
+      <textarea type="text" [(ngModel)]="defaultEmail.body" class="form-control" id="body" name="body"
+        rows="7"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Siųsti</button>
+  </form>
+</div>

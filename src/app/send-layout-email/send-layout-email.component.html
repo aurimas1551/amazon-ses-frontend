@@ -1,0 +1,62 @@
+<div class="container col-md-5">
+    <form class="paddingTop" (ngSubmit)="layoutEmailSubmit()">
+        <div>
+            <label>Pasirinkite projektą iš sarašo žemiau</label>
+            <select class="form-control" (change)="selectProjectChangeHandler($event)">
+                <option value="" selected disabled hidden>Projektai</option>
+                <option *ngFor="let apiProject of apiProjects" value="{{apiProject.id}}" id="id" name="id">
+                    {{apiProject.projectName}}</option>
+            </select>
+        </div>
+        <div>
+            <label>Siuntėjo paštas</label>
+            <input [(ngModel)]="layoutEmail.senderEmail" type="text" class="form-control" id="senderEmail"
+                name="senderEmail">
+        </div>
+        <div>
+            <label>Pasirinkite maketą iš sarašo žemiau</label>
+            <select class="form-control" (change)="selectTemplateChangeHandler($event)">
+                <option value="" selected disabled hidden>Maketas</option>
+                <option *ngFor="let apiTemplate of apiTemplates" value="{{apiTemplate.id}}">{{apiTemplate.templateName}}
+                </option>
+            </select>
+        </div>
+        <div>
+            <ng-container *ngIf="selectedTemplateId == -1; else elseif1"></ng-container>
+            <ng-template #elseif1>
+                <ng-container *ngIf="selectedTemplateId == 75; else elseif2">
+                    <div class="form-group">
+                        <label>Laiško tema</label>
+                        <textarea type="text" class="form-control" [(ngModel)]="dataform[0]" name="dataform[0]"
+                            rows="1"></textarea>
+                        <div class="form-group">
+                            <label>Laiško tekstas</label>
+                            <textarea type="text" class="form-control" [(ngModel)]="dataform[1]" name="dataform[1]"
+                                rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Siųsti</button>
+                    </div>
+                </ng-container>
+            </ng-template>
+            <ng-template #elseif2>
+                <ng-container *ngIf="selectedTemplateId == 84; else else1">
+                    <div>
+                        <label>Užpildykite žemiau pateiktus laukus</label>
+                        <textarea type="text" class="form-control" [(ngModel)]="dataform[0]" name="dataform[0]" rows="1"
+                            placeholder="Renginio pavadinimas"></textarea>
+                        <textarea type="text" class="form-control" [(ngModel)]="dataform[1]" name="dataform[1]" rows="1"
+                            placeholder="Renginio laikas"></textarea>
+                        <textarea type="text" class="form-control" [(ngModel)]="dataform[2]" name="dataform[2]" rows="1"
+                            placeholder="Renginio kaina"></textarea>
+                        <textarea type="text" class="form-control" [(ngModel)]="dataform[3]" name="dataform[3]" rows="1"
+                            placeholder="Jūsų puslapis(link)"></textarea>
+                        <textarea type="text" class="form-control" [(ngModel)]="dataform[4]" name="dataform[4]" rows="1"
+                            placeholder="Jūsų puslapį atvaizduojantis tekstas, kurį spaus"></textarea>
+                        <button type="submit" class="btn btn-primary">Siųsti</button>
+                    </div>
+                </ng-container>
+            </ng-template>
+            <ng-template #else1></ng-template>
+        </div>
+    </form>
+</div>

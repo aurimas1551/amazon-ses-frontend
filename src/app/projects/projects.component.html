@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="paddingTop">
+    <form #projectNameForm="ngForm" (ngSubmit)="onBtnClickNewProject();projectNameForm.reset()">
+      <div>
+        <label for="exampleFormControlInput1">Naujo projekto sukūrimas</label>
+        <input type="text" [(ngModel)]="project.projectName" class="form-control" id="projectName" name="projectName">
+        <button type="submit" class="btn btn-primary">Sukurti</button>
+      </div>
+    </form>
+    <form (ngSubmit)="onBtnClickDeleteSelectedProject()">
+      <div>
+        <label for="exampleFormControlInput1">Projekto ištrinimas</label>
+        <select class="form-control" (change)="selectDeleteProjectChangeHandler($event)">
+          <option value="" selected disabled hidden>Projektas</option>
+          <option *ngFor="let apiProject of apiProjects" value="{{apiProject.id}}" id="id" name="id">
+            {{apiProject.projectName}}</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Ištrinti</button>
+      </div>
+    </form>
+    <form (ngSubmit)="onBtnClickResendSelectedProjectEmails()">
+      <div>
+        <label for="exampleFormControlInput1">Laiškų persiuntimas</label>
+        <select class="form-control" (change)="selectResendProjectChangeHandler($event)">
+          <option value="" selected disabled hidden>Projektas</option>
+          <option *ngFor="let apiProject of apiProjects" value="{{apiProject.id}}" id="id" name="id">
+            {{apiProject.projectName}}</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Persiųsti</button>
+      </div>
+    </form>
+  </div>
+  <div>
+    <label for="exampleFormControlSelect1">Pasirinkite projektą iš sarašo žemiau</label>
+    <select class="form-control" (change)="selectProjectChangeHandler($event)">
+      <option value="" selected disabled hidden>Projektas</option>
+      <option *ngFor="let apiProject of apiProjects" value="{{apiProject.id}}" id="id" name="id">
+        {{apiProject.projectName}}</option>
+    </select>
+  </div>
+  <br>
+  <div *ngIf="selectedProjectId != -1">
+    <div class="row">
+      <select class="form-control filterSelect" (change)="selectFilterChangeHandler($event)">
+        <option value="visi" selected>Visi</option>
+        <option value="success">Išsiųsti</option>
+        <option value="messagerejected">Neišsiųsti</option>
+      </select>
+      <table class="table table-responsive table-sm projectTable">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Siuntėjo adresas</th>
+            <th scope="col">Gavėjo adresas</th>
+            <th scope="col">Maketo pavadinimas</th>
+            <th scope="col">Statusas</th>
+            <th scope="col">Siuntimo data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let email of selectedProject.emails">
+            <th>{{email.id}}</th>
+            <td>{{email.senderEmail}}</td>
+            <td>{{email.receivingEmail}}</td>
+            <td>{{email.templateName}}</td>
+            <td>{{email.status}}</td>
+            <td>{{email.createdDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

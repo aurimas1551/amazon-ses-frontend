@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="paddingTop">
+        <form>
+            <div>
+                <label class="row">Pasirinkite maketą iš sarašo žemiau</label>
+                <select class="form-control row" (change)="selectChangeHandler($event)">
+                    <option selected disabled hidden>Maketai</option>
+                    <option *ngFor="let template of templates" value="{{template.id}}">{{template.templateName}}
+                    </option>
+                </select>
+            </div>
+        </form>
+        <div class="paddingTopLayout">
+            <ng-container *ngIf="templateid == -1; else elseif1"></ng-container>
+            <ng-template #elseif1>
+                <ng-container *ngIf="templateid == 75; else elseif2">
+                    <div class="form-group ">
+                        <label>Laiško tema</label>
+                        <textarea class="form-control" rows="1" placeholder="Jūsų įvestas pavadinimas"></textarea>
+                        <div class="form-group">
+                            <label>Laiško tekstas</label>
+                            <textarea class="form-control" rows="3" placeholder="Jūsų įvestas tekstas"></textarea>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+            <ng-template #elseif2>
+                <ng-container *ngIf="templateid == 84; else else1">
+                    <div>
+                        <label class="row">Laiško tema</label>
+                        <div class="row border">
+                            <h3>Sveiki, mes kviečiame Jumis atvyktį į&nbsp;</h3>
+                            <h3 class="text-primary">Jūsų renginio pavadinimas</h3>
+                            <h3>&nbsp;renginį!</h3>
+                        </div>
+                        <label class="row">Laiško tekstas</label>
+                        <div>
+                            <div class="row border-top border-right border-left">
+                                <h3>Sveiki!</h3>
+                            </div>
+                            <div class="row border-right border-left">
+                                <p>Mes Jus kviečiame į šį nuostabų renginį, kuris vyks&nbsp;</p>
+                                <p class="text-primary">Jūsų renginio laikas</p>
+                                <p>&nbsp;,o kaina&nbsp;</p>
+                                <p class="text-primary">Jūsų renginio kaina</p>
+                                <p>.</p>
+                            </div>
+                            <div class="row border-right border-left">
+                                <p>Šis renginys vyks online todėl jums nereikės niekur vykti!</p>
+                            </div>
+                            <div class="row border-right border-left border-bottom">
+                                <p>Daugiau apie renginį galite sužinoti apsilankę mūsų puslapyje&nbsp;</p>
+                                <a class="text-primary">Jūsų nurodytas puslapis</a>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+            <ng-template #else1></ng-template>
+        </div>
+    </div>
+</div>

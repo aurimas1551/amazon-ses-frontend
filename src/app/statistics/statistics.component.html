@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="paddingTop">
+    <label>Pasirinkite projektą iš sarašo žemiau</label>
+    <select class="form-control" (change)="selectProjectChangeHandler($event)">
+      <option value="" selected disabled hidden>Projektai</option>
+      <option value="all">Visi</option>
+      <option *ngFor="let apiProject of apiProjects" value="{{apiProject.id}}" id="id" name="id">
+        {{apiProject.projectName}}</option>
+    </select>
+  </div>
+  <div>
+    <ng-container *ngIf="selectedProjectId == -1; else elseif1"></ng-container>
+    <ng-template #elseif1>
+      <ng-container *ngIf="selectedProjectId == -2; else elseif2">
+        <div class="form-group ">
+        </div>
+        <div>
+          <canvas baseChart [datasets]="charData" [labels]="barChartLabels" [options]="barChartOptions"
+            [legend]="barChartLegend"></canvas>
+        </div>
+      </ng-container>
+    </ng-template>
+    <ng-template #elseif2>
+      <div>
+        <div>
+          <form [formGroup]="form">
+            <mat-form-field appearance="fill">
+              <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input [rangePicker]="picker" formGroupName="daterange">
+                <input matStartDate placeholder="Start date" formControlName="start">
+                <input matEndDate placeholder="End date" formControlName="end">
+              </mat-date-range-input>
+              <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+            <button type="button" (click)="onBtnClickDateSelect()" class="btn btn-primary">Pasirinkti datas</button>
+          </form>
+          <canvas baseChart [datasets]="charDataProject" [labels]="barChartLabelsProject" [options]="barChartOptions"
+            [legend]="barChartLegend"></canvas>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
